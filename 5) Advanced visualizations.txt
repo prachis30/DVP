@@ -1,0 +1,62 @@
+Title: Advanced visualizations
+
+Aim: 5.1 Create more advanced data visualization dashboards by using complex
+Calculation
+5.2 Using multiple source tables
+
+Objective: To create more advanced data visualization dashboards by incorporating complex
+calculated fields for in-depth data analysis and insights, and to optimize user interaction by
+organizing dashboard filters in a tabular layout, streamlining data exploration for more efficient
+and customized data-driven decision-making.
+
+Theory:
+5.1
+Creating more advanced data visualization dashboards using complex calculated fields
+involves leveraging the power of custom calculations and formulas to extract deeper insights and
+present data in a more meaningful way.
+Complex calculated fields enable the dashboard designer to go beyond basic data presentation and
+engage in more advanced data manipulation and analysis. 
+
+This can include:
+Advanced Metrics: Calculating sophisticated performance metrics and KPIs that are not readily
+available in the raw data. For example, creating a custom profitability index based on various
+financial data points.
+
+Statistical Analysis: Implementing statistical functions to uncover patterns, trends, and anomalies
+within the data. This may involve calculating correlations, regressions, or statistical significance.
+
+Data Transformations: Using complex formulas to transform the data, such as normalizing values,
+aggregating data at different levels, or applying mathematical models to predict future trends.
+Conditional Logic: Incorporating conditional statements within calculated fields to categorize or
+label data points based on specific criteria. This can be useful for segmenting data into different
+groups or identifying outliers.
+
+Using multiple source tables in Tableau involves integrating data from various datasets or
+tables to create a unified and comprehensive dataset for visualization and analysis. This process
+includes the following key principles:
+1. Data Integration: Combining data from multiple source tables allows for a more holistic
+view of the information. This integration often requires a common key or field that links the data
+across tables, facilitating the merging process.
+2. Data Blending: In cases where there is no direct relationship between the tables, data
+blending can be used to bring data together. Tableau provides a Data Blending feature to join data
+from different tables based on related dimensions.
+3. Join Types: Different join types (inner, left, right, outer) can be employed to control which
+data is included in the merged dataset. The choice of join type depends on the specific requirements
+of the analysis.
+Data Cleanup: Prior to integration, it's essential to clean and prepare the data in each source
+table, ensuring consistency in field names, data types, and formatting to facilitate smooth
+integration.
+5. Relationships: Establishing relationships within Tableau helps define how tables are
+connected, which fields are used as keys, and how they interact with each other in visualizations.
+These relationships are important for maintaining data accuracy and structure.
+6. Data Performance: When working with multiple source tables, data performance becomes
+a critical consideration. Optimizing data extracts and query performance can involve aggregation,
+filtering, or other techniques to ensure that the dashboard remains responsive and efficient
+
+Lab Outcome:
+Using multiple source tables in Tableau enables the integration of data from various datasets, fostering comprehensive visualizations and informed decision-making while ensuring data accuracy and consistency.
+
+Conclusion:
+In summary, using multiple source tables in Tableau enhances data integration and
+visualization, facilitating informed decision-making. It ensures comprehensive insights
+while maintaining data accuracy.

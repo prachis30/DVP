@@ -1,0 +1,71 @@
+Title: Common Chart
+
+Aim: 2.1 Creating common visualizations (bar chart, line chart, scatter plot, area chart)
+2.2 Assembling dashboard layout using dashboard filters.
+Objective: To Create a Tableau dashboard by using various visualization techniques using
+dashboard filters.
+
+Theory:
+2.1
+Charts in Tableau help professionals to an exponential level in the field of business intelligence
+and analytics. The real-time information can be directly represented using a wide variety of
+readily available and user-readable charts. Implementing data-oriented charts or graphs in your
+professional life can make result generation efficient for you. While charts are meant to
+represent an extensive set of information into diagrams, graphs, or tables, a graph displays
+mathematical relations between various data sets.
+
+Tableau Charts List:
+Bar Chart
+Bar Charts are one of the standard methods of data visualization across all platforms. It is
+meant to represent the data in the form of bars. The bar length is proportional to the value of the
+variable. You can instantly highlight the difference between outliers, show trends, and categories.
+Also, you can reveal historical lows and highs at a glance. Here we are displaying quantity of
+Products by Category/Sub Category for the superstore dataset. The bar chart makes it easy to
+differentiate between highest and lowest quantity of products. The height of the bars give a clear
+representation for each product category.
+
+Line Chart
+Line Graphs, or Line Charts, are majorly used in combining individual points in a
+comprehensive sequence. It helps connect a variety of data points to display them as one consistent
+evolution. The result is a straightforward, simple way that visualizes changes in one value that is
+relative to another.
+
+Area Chart
+Area chart helps represent quantitative data over a variety of periods. An area chart is almost the
+same as a line chart. What makes them stand apart is the partitions that are done on the
+basis of nations, regions, or categories in the area chart. Here we are displaying the sales for each
+category of products (Furniture, Office Supplies, and Technology) by year of order date. Area
+charthelps to understand the magnitude of sales.
+
+Tree Map
+A Tree map is used to demonstrate different parts of the data as they relate to the whole. Each
+rectangle in a Tree map is divided into smaller rectangles based on its proportions to the whole
+data like branches of a tree. So the total Tree map demonstrates the whole data while individual
+rectangles show the sub-data in proportion to the whole. Here we are displaying the ship mode
+and quantity of products segregated by region. There are 4 ship modes - Standard class, First
+class, Second class and same day.
+
+Scatter Plot
+Scatter plots are used to understand the relationship between two variables in the data. You can
+also find the outliers in your data or understand the overall distribution by plotting a Scatter plot.
+If the data moves from lower left to upper right, there might be a positive correlation between
+the two variables if the data move in the opposite direction, there might be a negative correlation.
+Here we are displaying the count of orders and profit by city. The scatter plot shows profit and
+count of orders on the same axis showing relationship between them country wise.
+
+2.2 Assembling dashboard layout using dashboard filters
+A dashboard is a collection of several views, letting you compare a variety of data
+simultaneously. For example, if you have a set of views that you review every day, you can create
+a dashboard that displays all the views at once, rather than navigate to separate worksheets. Like
+worksheets, you access dashboards from tabs at the bottom of a workbook. Data in sheets and
+dashboards is connected; when you modify a sheet, any dashboards containing it change, and
+vice versa. Both sheets and dashboards update with the latest available data from the data source. 
+
+Lab Outcome:
+Create a Tableau dashboard by using various visualization charts.
+
+Conclusion:
+This lab effectively demonstrated the creation of common data visualizations and the assembly
+of interactive dashboards with filters in Tableau. These skills enable users to explore an
+communicate data insights, fostering data-driven decision-making. The focus on user-centric
+design enhances the overall data analy

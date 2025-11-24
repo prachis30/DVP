@@ -1,0 +1,61 @@
+Title: Interactions
+Experiment No 4
+
+Aim: 4.1 Create an interactive dashboard with text and visual tooltips by using drill-down
+4.2 Interactivity with text and visual tooltips,Interactivity with actions (filter,
+highlight,URL),Drilldown between dashboards
+
+Lab Objective: To build an interactive dashboard with text and visual tooltips, supporting
+actions like filtering and drill-down navigation between dashboards, enhancing the user experience
+and data exploration.
+
+Theory:
+4.1
+Creating an interactive dashboard with text and visual tooltips using a drill-down approach
+involves designing a dynamic data visualization interface that enables users to explore information
+in a hierarchical manner. It typically commences with a high-level overview, presenting summary
+statistics or key performance indicators (KPIs) to offer users a top-level perspective of the data.
+
+High-Level Overview: Start with a high-level view of the data, such as summary statistics or key
+performance indicators (KPIs). This provides users with a bird's-eye view of the information.
+Interactive Elements: Design the dashboard with interactive elements, such as clickable charts,
+graphs, or data points. Users can click on these elements to access more detailed information.
+Text and Visual Tooltips: Implement tooltips that display relevant information when a user hovers
+over or clicks on a specific data point. Tooltips can include text descriptions, additional statistics,
+or even visual aids like pop-up charts.
+
+Interactivity with Text and Visual Tooltips:
+Interactivity with text and visual tooltips is a critical feature in data visualization and dashboard
+design. It involves providing users with additional information and context by allowing them to
+hover over or click on data points, charts, or other elements within a dashboard.
+
+Interactivity with Actions (Filter, Highlight, URL):
+Interactivity with actions in a dashboard allows users to manipulate and interact with the data to
+extract meaningful insights and perform specific tasks. This includes features like filtering,
+highlighting, and linking to external resources through URLS.
+
+1. Filtering: Users can apply filters to the data to narrow down what they are viewing,
+focusing on specific subsets or timeframes. Filters enable users to customize their data analysis
+and answer specific questions. For example, in an e-commerce dashboard, users might filter sales
+data to view results for a particular product category or location.
+
+2. Highlighting: Highlighting lets users emphasize particular data points, making it easier to
+identify trends, outliers, or important information. It is a valuable tool for visual data analysis and
+storytelling within the dashboard.
+
+3. URL Links: Incorporating URL links allows users to access external resources or websites
+directly from the dashboard. For instance, a dashboard tracking news articles can link to the full
+articles or related web pages for additional context and information.
+These interactive actions empower users to interact with the data and customize their experience,
+making the dashboard a versatile tool for data exploration, analysis, and decision-making.
+
+Lab Outcome:
+The lab outcome suggests that using an interactive dashboard with text and visual
+tooltips in a drill-down approach enhances data exploration and insight generation,
+providing a valuable tool for data-driven decision-making
+Conclusion:
+In conclusion, creating an interactive dashboard with text and visual tooltips usin a
+drill-down approach involves steps such as providing a high-level overview, adding
+interactive elements, text and visual tooltips, and a hierarchical structure. It aims to
+empower users to explore data, maintain data consistency, and gain valuable insights for
+makin informed decisions.

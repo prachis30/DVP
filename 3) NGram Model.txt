@@ -1,0 +1,91 @@
+# Step-1
+from collections import defaultdict
+import random
+# Step-2
+def generate_ngrams(text, n):
+    words = text.split()
+    ngrams = [tuple(words[i:i+n]) for i in range(len(words)-n+1)]
+    return ngrams
+# Step-3
+def calculate_probability_matrix(ngrams):
+    counts = defaultdict(lambda: defaultdict(int))
+    for ngram in ngrams:
+        prefix = ngram[:-1]
+        suffix = ngram[-1]
+        counts[prefix][suffix] += 1
+
+    probabilities = {}
+    for prefix, suffix_counts in counts.items():
+        total_count = sum(suffix_counts.values())
+        probabilities[prefix] = {suffix: count / total_count for suffix, count in suffix_counts.items()}
+
+    return probabilities
+# Step-4
+def print_ngram_probability(ngrams, probabilities):
+    for ngram in ngrams:
+        prefix = ngram[:-1]
+        suffix = ngram[-1]
+        probability = probabilities[prefix][suffix]
+        print(f"{prefix} -> {suffix}: Probability = {probability:.4f}")
+
+text = input("Enter a sentence: ")
+n = int(input("Enter the value of 'n' for n-grams (1 for unigram, 2 for bigram, 3 for trigram, etc.):"))
+ngrams = generate_ngrams(text, n)
+probabilities = calculate_probability_matrix(ngrams)
+print_ngram_probability(ngrams, probabilities)
+
+
+
+
+Title:
+NGram Model.
+
+Aim:
+The aim of the practical is to implement and analyze an NGram Model for language modeling.
+Lab Objectives:
+To construct N-gram from a given corpus and calculate the probability of a sentence, as well as
+identify and classify named entities in a text into predefined categories.
+
+Theory:
+N-grams are an essential concept in Natural Language Processing (NLP) used to analyze and model
+sequences of words or characters in text. They play a crucial role in various NLP tasks such as
+language modeling, text generation, machine translation, and speech recognition. Here's a detailed
+explanation of N-grams:
+
+Definition:
+"An N-gram is a contiguous sequence of N items (which can be words, characters, or other units)
+from a given sample of text or speech. These items can be letters, syllables, words, or even longer
+sequences, depending on the application. N-grams are used to capture the local linguistic context
+within a text."
+
+Uses of N-grams:
+
+Language Modeling: N-grams are used to estimate the probability of a word given its
+previous N-1 words. This is fundamental in predicting the next word in aa sequence of text,
+making them essential for applications like auto-completion and text generation.
+
+Text Classification: N-grams can be used to represent documents or text for classification
+tasks. By counting the occurrences of N-grams in adocument, it's possible to create a feature
+vector that can be used in machine learning algorithms for text classification.
+
+Information Retrieval: In search engines, N-grams can be used to index documents and
+query terms. This helps in ranking and retrieving relevant documents.
+
+Speech Recognition: N-grams can be used to model sequences of phonemes or words in
+speech recognition systems, aiding in accurate transcription of spoken language.
+
+Machine Translation: N-grams are used in machine translation to align and translate
+sequences of words or phrases in different languages.
+
+Spelling Correction: N-grams can help identify and correct misspelled words by comparing
+them to correctly spelled N-grams in a language model.
+
+Lab Outcomes:
+Construct N-gram from a given corpus and calculate the probability of a sentence, as well as identify
+and classify named entities in a text into predefined categories.
+
+Conclusions:
+In conclusion, N-grams are a fundamental concept in NLP for capturing and modeling sequences
+of words or characters in text. They have various applications in language modeling, text analysis,
+and many other NLP tasks. Understanding the appropriate choice of N and employing techniques
+to address sparsity can significantly improve their effectiveness in NLP applications.

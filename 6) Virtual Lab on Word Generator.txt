@@ -1,0 +1,317 @@
+# Import required libraries
+import ipywidgets as widgets
+from IPython.display import display, HTML, clear_output
+import pandas as pd
+
+# Install ipywidgets if not already installed (uncomment if needed)
+# !pip install ipywidgets
+
+print("✓ Libraries imported successfully!")
+print("Ready to start morphological analysis and generation.")
+
+# Word Database - Contains words with their morphological features
+# This serves as the knowledge base for word analysis
+
+WORD_DATABASE = {
+    'playing': {
+        'root': 'play',
+        'category': 'verb',
+        'gender': 'n/a',
+        'number': 'singular',
+        'person': '1st',
+        'case': 'n/a',
+        'tense': 'present-continuous'
+    },
+    'plays': {
+        'root': 'play',
+        'category': 'verb',
+        'gender': 'n/a',
+        'number': 'singular',
+        'person': '3rd',
+        'case': 'n/a',
+        'tense': 'simple present'
+    },
+    'played': {
+        'root': 'play',
+        'category': 'verb',
+        'gender': 'n/a',
+        'number': 'singular',
+        'person': '1st',
+        'case': 'n/a',
+        'tense': 'simple past'
+    },
+    'play': {
+        'root': 'play',
+        'category': 'verb',
+        'gender': 'n/a',
+        'number': 'singular',
+        'person': '1st',
+        'case': 'n/a',
+        'tense': 'simple present'
+    },
+    'boys': {
+        'root': 'boy',
+        'category': 'noun',
+        'gender': 'male',
+        'number': 'plural',
+        'person': 'n/a',
+        'case': 'n/a',
+        'tense': 'n/a'
+    },
+    'boy': {
+        'root': 'boy',
+        'category': 'noun',
+        'gender': 'male',
+        'number': 'singular',
+        'person': 'n/a',
+        'case': 'n/a',
+        'tense': 'n/a'
+    },
+    'studies': {
+        'root': 'study',
+        'category': 'verb',
+        'gender': 'n/a',
+        'number': 'singular',
+        'person': '3rd',
+        'case': 'n/a',
+        'tense': 'simple present'
+    },
+    'study': {
+        'root': 'study',
+        'category': 'verb',
+        'gender': 'n/a',
+        'number': 'singular',
+        'person': '1st',
+        'case': 'n/a',
+        'tense': 'simple present'
+    },
+    'studied': {
+        'root': 'study',
+        'category': 'verb',
+        'gender': 'n/a',
+        'number': 'singular',
+        'person': '1st',
+        'case': 'n/a',
+        'tense': 'simple past'
+    }
+}
+
+print(f"✓ Word database initialized with {len(WORD_DATABASE)} words")
+
+# Part 1: Word Analysis (Morphological Analyzer)
+
+output_analyzer = widgets.Output()
+
+word_dropdown = widgets.Dropdown(
+    options=list(WORD_DATABASE.keys()),
+    value='playing',
+    description='Select Word:',
+    style={'description_width': 'initial'}
+)
+
+root_dropdown = widgets.Dropdown(
+    options=['play', 'study', 'boy', 'girl', 'run'],
+    description='Root:',
+    style={'description_width': 'initial'}
+)
+
+category_dropdown = widgets.Dropdown(
+    options=['verb', 'noun', 'adjective', 'n/a'],
+    description='Category:',
+    style={'description_width': 'initial'}
+)
+
+gender_dropdown = widgets.Dropdown(
+    options=['male', 'female', 'n/a'],
+    description='Gender:',
+    style={'description_width': 'initial'}
+)
+
+number_dropdown = widgets.Dropdown(
+    options=['singular', 'plural', 'n/a'],
+    description='Number:',
+    style={'description_width': 'initial'}
+)
+
+person_dropdown = widgets.Dropdown(
+    options=['1st', '2nd', '3rd', 'n/a'],
+    description='Person:',
+    style={'description_width': 'initial'}
+)
+
+case_dropdown = widgets.Dropdown(
+    options=['nominative', 'accusative', 'n/a'],
+    description='Case:',
+    style={'description_width': 'initial'}
+)
+
+tense_dropdown = widgets.Dropdown(
+    options=['simple present', 'simple past', 'simple future', 'present-continuous', 'n/a'],
+    description='Tense:',
+    style={'description_width': 'initial'}
+)
+
+check_button = widgets.Button(
+    description='Check Answer',
+    button_style='primary',
+    tooltip='Click to validate your analysis',
+    icon='check'
+)
+
+def check_analysis(b):
+    with output_analyzer:
+        clear_output()
+        
+        selected_word = word_dropdown.value
+        correct_features = WORD_DATABASE[selected_word]
+        
+        user_selections = {
+            'root': root_dropdown.value,
+            'category': category_dropdown.value,
+            'gender': gender_dropdown.value,
+            'number': number_dropdown.value,
+            'person': person_dropdown.value,
+            'case': case_dropdown.value,
+            'tense': tense_dropdown.value
+        }
+        
+        results = []
+        all_correct = True
+        
+        for feature in ['root', 'category', 'gender', 'number', 'person', 'case', 'tense']:
+            user_val = user_selections[feature]
+            correct_val = correct_features[feature]
+            is_correct = user_val == correct_val
+            if not is_correct:
+                all_correct = False
+            results.append({
+                'Feature': feature.capitalize(),
+                'Your Selection': user_val,
+                'Correct Answer': correct_val,
+                'Status': '✓' if is_correct else '✗'
+            })
+        
+        df = pd.DataFrame(results)
+        table_html = df.to_html(index=False, escape=False)
+        table_html = table_html.replace('<table', '<table style="border-collapse: collapse; width: 100%; border: 2px solid black;"')
+        table_html = table_html.replace('<th>', '<th style="border: 1px solid black; padding: 8px; background-color: #f2f2f2;">')
+        table_html = table_html.replace('<td>', '<td style="border: 1px solid black; padding: 8px;">')
+        table_html = table_html.replace('✓', '<span style="color: green; font-weight: bold;">✓</span>')
+        table_html = table_html.replace('✗', '<span style="color: red; font-weight: bold;">✗</span>')
+        
+        display(HTML(f"<h3>Analysis Results for: '{selected_word}'</h3>"))
+        display(HTML(table_html))
+        
+        if all_correct:
+            display(HTML('<h2 style="color: green; font-weight: bold;">🎉 Right answer!!! 🎉</h2>'))
+        else:
+            display(HTML('<h3 style="color: red;">Some features are incorrect. Please try again!</h3>'))
+
+check_button.on_click(check_analysis)
+
+print("Word Analyzer Interface:")
+display(widgets.VBox([
+    widgets.HTML('<h3>Analyze the word by selecting its morphological features:</h3>'),
+    word_dropdown,
+    widgets.HTML('<hr>'),
+    root_dropdown,
+    category_dropdown,
+    gender_dropdown,
+    number_dropdown,
+    person_dropdown,
+    case_dropdown,
+    tense_dropdown,
+    widgets.HTML('<hr>'),
+    check_button,
+    output_analyzer
+]))
+
+# Part 2: Word Generation (Morphological Generator)
+
+def generate_word(root, category, number, person, tense):
+    if category == 'verb':
+        if tense == 'simple present':
+            if person == '3rd' and number == 'singular':
+                if root.endswith('y'):
+                    return root[:-1] + 'ies'
+                elif root.endswith(('s', 'sh', 'ch', 'x', 'o')):
+                    return root + 'es'
+                else:
+                    return root + 's'
+            else:
+                return root
+        elif tense == 'simple past':
+            if root.endswith('y'):
+                return root[:-1] + 'ied'
+            elif root.endswith('e'):
+                return root + 'd'
+            else:
+                return root + 'ed'
+        elif tense == 'present-continuous':
+            if root.endswith('e'):
+                return root[:-1] + 'ing'
+            else:
+                return root + 'ing'
+        elif tense == 'simple future':
+            return 'will ' + root
+        else:
+            return root
+    elif category == 'noun':
+        if number == 'plural':
+            if root.endswith('y'):
+                return root[:-1] + 'ies'
+            elif root.endswith(('s', 'sh', 'ch', 'x', 'o')):
+                return root + 'es'
+            else:
+                return root + 's'
+        else:
+            return root
+    return root
+
+print("✓ Word Generator Ready!")
+
+
+
+
+Virtual Lab on Word Generator
+Aim:
+Experiment No. 6
+Designing and implementing a virtual word generator and word analyzer in the context of natural
+language processing.
+
+Lab Objectives:
+The objective of the experiment is to learn about the morphological features of a word by analyzing
+it and to generate word forms from root and suffix information.
+
+Theory:
+A word can be simple or complex. For example, the word 'cat' is simple because one cannot further
+decompose the word into smaller parts. On the other hand, the word 'cats' is complex, because the
+word is made up of two parts: root 'cat' and plural suffix '-s'
+
+Analysis of a word into root and affix(es) is called a Morphological analysis of a word. It is
+mandatory to identify the root of a word for any natural language processing task. A root word can
+have various forms. For example, the word 'play' in English has the following forms: 'play', 'plays',
+'played', and 'playing'.
+
+lgorithm:
+A) For word analysis:
+STEP 1: Select the language.
+OUTPUT: A dropdown for selecting words will appear.
+STEP 2: Select the word.
+OUTPUT: A dropdown for selecting features will appear.
+STEP 3: Select the features.
+STEP 4: Click the "Check" button to check your answer.
+OUTPUT: Right features are marked by tick and wrong features are marked by cross.
+
+Lab Outcomes:
+Apply and demonstrate the basics of morphological analysis for word information.
+
+Conclusions:
+Word generation is a fundamental task in Natural Language Processing (NLP) with various
+applications, including text generation, data augmentation, and linguistic analysis. Virtual word
+generators can be designed and implemented using programming languages like Python, allowing
+for the creation of words based on linguistic patterns and constraints. Word generators can be
+customized to meet specific NLP tasks and applications, making them valuable tools in language
+processing projects. Word generation systems can be extended to incorporate more advanced
+linguistic features, such as part-of-speech constraints or phonological rules, to generate words that
+are even more contextually relevant.

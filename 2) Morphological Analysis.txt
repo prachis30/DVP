@@ -1,0 +1,109 @@
+!python -m venv /tmp/env
+!/tmp/env/bin/pip install --upgrade pip
+!/tmp/env/bin/pip install numpy==1.26.4 scipy==1.12.0 h5py==3.10.0 spacy==3.7.2
+!/tmp/env/bin/python -c "import spacy, numpy; print('✅ spaCy:', spacy.__version__, '| NumPy:', numpy.__version__)"
+
+import sys
+sys.path.insert(0, "/tmp/env/lib/python3.11/site-packages")
+
+import spacy
+print("spaCy imported successfully:", spacy.__version__)
+
+! /tmp/env/bin/pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.0/en_core_web_sm-3.7.0-py3-none-any.whl
+
+import spacy
+from tabulate import tabulate
+nlp = spacy.load("en_core_web_sm")
+
+interrogative_sentence = input("Enter an interrogative sentence: ")
+declarative_sentence = input("Enter a declarative sentence: ")
+complex_sentence = input("Enter a complex sentence: ")
+
+interrogative_doc = nlp(interrogative_sentence)
+declarative_doc = nlp(declarative_sentence)
+complex_doc = nlp(complex_sentence)
+
+interrogative_pos = [(token.text, token.pos_) for token in interrogative_doc]
+declarative_pos = [(token.text, token.pos_) for token in declarative_doc]
+complex_pos = [(token.text, token.pos_) for token in complex_doc]
+
+table_headers = ["Word", "POS Tag"]
+
+interrogative_table = tabulate(interrogative_pos, headers=table_headers, tablefmt="pretty")
+declarative_table = tabulate(declarative_pos, headers=table_headers, tablefmt="pretty")
+complex_table = tabulate(complex_pos, headers=table_headers, tablefmt="pretty")
+
+print("Interrogative Sentence POS Tags:")
+print(interrogative_table)
+print("Declarative Sentence POS Tags:")
+print(declarative_table)
+print("Complex Sentence POS Tags:")
+print(complex_table)
+
+
+
+
+
+Experiment No. 2
+Morphological Analysis
+Aim:
+The aim of the practical is to conduct morphological analysis to understand and analyze the structure of
+linguistic forms.
+
+Lab Objectives:
+To apply and demonstrate the basics of morphological analysis for word formation.
+
+Theory:
+a Morphology analysis is a linguistic study that deals with the internal structure of words in
+language. It explores how words are formed from smaller meaningful units called morphemes.
+Morphemes are the smallest grammatical units in a language that carry meaning.
+
+
+Here are the key components and concepts of morphology analysis:
+Morpheme:
+As mentioned earlier, a morpheme is the smallest unit of meaning in a language. It can be a word
+itself or a part of a word (prefixes, suffixes, etc.). For example, in the word "unhappiness," there are
+three morphemes: "un-"(meaning 'not'), "happy" (meaning 'joyful'), and"-ness" (indicating a state
+or quality).
+
+Free and Bound Morphemes:
+Free morphemes can stand alone as words by themselves and carry meaning. For example,
+English, words like "dog," "run," and "book" are free morphemes.
+in
+Bound morphemes can't stand alone and must be attached to other morphemes to convey meaning.
+Prefixes like "un-" or suffixes like "-ed" are examples.
+
+Inflectional vs. Derivational Morphemes:
+Inflectional morphemes alter the form of a word to indicate grammatical information like tense,
+case, number, etc. For example, in English, "-s" in "cats" indicates plural. Derivational morphemes
+are used to create new words or change the grammatical category of a word.
+For example, adding "-ness" to "happy" creates "happiness," changing an adjective to a noun.
+
+Morphological Processes:
+Affixation: This involves adding prefixes (before the root) or suffixes (after the root) to a word. For
+example, adding "-ing" to "read" forms "reading."
+Compounding: It involves combining two or more free morphemes to create a new word. For
+instance, "blackboard" combines "black" and "board."
+Reduplication: This process involves repeating a morpheme or part of it to create a new word. For
+example, in Tagalog, "tawa" (laugh) becomes "tatawa" (will laugh).
+Blending: This involves combining parts of two words to create a new one, often through truncation
+or fusion. For example, "brunch" combines "breakfast" and "lunch."
+Conversion (Zero Derivation): This is a process where a word changes its grammatical category
+without any overt morphological change. For example, "to google" (verb) from the proper noun
+"Google."
+Allomorphy: This refers to the variation in pronunciation of a morpheme depending on its context.
+For example, the plural morpheme in English can be pronounced as/s/ (cats) or/z/ (dogs) depending
+on the preceding sound.
+
+
+Lab Outcome:
+Apply and demonstrate the basics of morphological analysis for word formation.
+
+Conclusions:
+In conclusion, Morphological Analysis proves its worth as a valuable and versatile tool with
+applications in diverse fields. Its systematic approach to breaking down complex systems facilitates
+comprehensive understanding, aiding in problem-solving, decision-making, and system
+optimization. By dissecting the morphology of entities, this method offers a structured approach,
+fostering creativity and efficiency in engineering, decision science, strategic planning, and beyond.
+Its adaptability makes Morphological Analysis a valuable asset for addressing multifaceted
+challenges across various disciplines.

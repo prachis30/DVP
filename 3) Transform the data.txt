@@ -1,0 +1,72 @@
+Title: Transform the data
+
+Aim:
+3.1 Data viz Best Practices
+Draw a line chart which shows profit and sales by segment, state by quarterly and weekly. Calculate
+the Actual cost with quick table calculation and visualize it with discount
+3.2 Create tableau dashboard with simple calculations using table calculations.
+Lab Objective:
+To build data model and create simple calculations in Tableau Using table calculations.
+
+Theory:
+3.1
+Introduction to Data model:
+A data model is a conceptual representation of data and the relationships between different pieces
+of data within a particular domain or system. It serves as a blueprint or framework for organizing,
+structuring, and managing data in a consistent and meaningful way. Data models are fundamental
+in database design, software development, and data management, as they help ensure data
+accuracy, consistency, and integrity.
+
+Relationship between data model
+One- to- one relationship
+A one-to-one (1:1) relationship is a type of association between two entities in a data model where
+one record in one entity (table) is related to exactly one record in another entity, and vice other words, for every record in the first entity, there is a single corresponding record in the second entity, and there
+are no duplicate relationships.
+
+ne- to- many relationship
+A one-to-many (1:N) relationship is a fundamental type of association in a data model where one
+record in one entity (table) can be related to multiple records in another entity, but each record in the
+second entity can be related to only one record in the first entity. It is one of the most common types
+of relationships in database modeling.
+
+Many-to-many relationship
+A many-to-many (M:N) relationship is a type of association in a data model where multiple records
+in one entity (table) can be related to multiple records in another entity, and vice versa. In this
+relationship, there is no strict limit on the number of related records on either side. It is a common
+type of relationship in database modeling and often requires an intermediary table to represent the
+relationship.
+
+Table calculation:
+A table calculation is a transformation you apply to the values in a visualization. Table calculations
+are a special type of calculated field that computes on the local data in Tableau. They are calculated
+based on what is currently in the visualization and do not consider any measures or dimensions
+that are filtered out of the visualization.
+
+You can use table calculations for a variety of purposes, including:
+Transforming values to rankings
+Transforming values to show running totals
+Transforming values to show percent of total
+• Table (down)
+Computes down the length of the table and restarts after every partition.
+Table (across then down)
+Computes across the length of the table, and then down the length of the table.
+• Table (down then across)
+Computes down the length of the table, and then across the length of the table.
+Pane (down)
+Computes down an entire pane
+Pane (across then down)
+Computes across an entire pane and then down the pane
+Pane (down then across)
+Computes down an entire pane and then across the pane.
+Cell
+Computes within a single cell.
+Specific Dimensions
+Computes only within the dimensions you specify
+
+
+Lab Outcome:
+Establish relationships between various data objects to build a data model and create table
+calculated data fields to calculate data across or down the table/pane/cell.
+Conclusion:
+Thus we understood how to establish relationships between various data objects to build a data model
+and create table-calculated data fields to calculate data across or down the table/pane/cell.

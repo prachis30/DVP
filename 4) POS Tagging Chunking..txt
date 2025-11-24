@@ -1,0 +1,90 @@
+# Import nltk and download the required resources
+import nltk
+nltk.download('punkt')  # For word tokenization
+nltk.download('averaged_perceptron_tagger')  # For POS tagging
+nltk.download('maxent_ne_chunker')  # For named entity chunking
+nltk.download('words')  # Required for ne_chunk
+
+# Import the specific functions
+from nltk.tokenize import word_tokenize
+from nltk.tag import pos_tag
+from nltk.chunk import ne_chunk
+
+# Sample text
+text = "Apple Inc. is a technology company based in Cupertino, California."
+
+# Word tokenization
+words = word_tokenize(text)
+
+# POS tagging
+pos_tags = pos_tag(words)
+
+# Chunking
+ne_chunks = ne_chunk(pos_tags)
+
+print("POS tagged text:")
+print(pos_tags)
+
+print("Text with named entities:")
+print(ne_chunks)
+
+
+
+Experiment No. 4
+POS Tagging Chunking.
+Aim:
+The aim of this practical is to implement and understand POS tagging and chunking techniques for
+natural language processing tasks.
+
+Lab Objectives:
+Apply knowledge of parts of speech, understand the concept of chunking, and get familiar with the
+basic chunk tagset.
+
+Theory:
+Part-of-Speech (POS) Tagging:
+Part-of-speech tagging, often abbreviated as POS tagging, is a fundamental task in natural language
+processing. It involves assigning grammatical categories (such as nouns, verbs, adjectives, etc.) to
+every word in a given text. This is crucial for understanding the syntactic structure of a sentence
+and extracting meaning from it.
+
+Details of POS tagging:
+
+What is POS Tagging?
+POS tagging is the process of automatically assigning a grammatical category (part of speech) to
+each word in a sentence. In the sentence "He runs quickly", POS tagging would label "He" as a
+pronoun, "runs" as a verb, and "quickly" as an adverb.
+
+Importance of POS Tagging:
+Syntactic Analysis: POS tagging helps in understanding the grammatical structure of a
+sentence, which is crucial for more advanced NLP tasks like parsing.
+Disambiguation: It helps resolve ambiguities that arise from homonyms (words with the same
+spelling but different meanings) and polysemy (words with multiple meanings).
+Information Extraction: POS tags can be used to identify entities, and relationships, and
+extract useful information from text.
+
+Common POS Tags:
+Noun (NN): Represents a person, place, thing, or idea.
+Verb (VB): Describes an action or state of being.
+Adjective (JJ): Modifies or describes a noun.
+Adverb (RB): Modifies or describes a verb, adjective, or other adverbs.
+Pronoun (PRP): Takes the place of a noun (e.g., he, she, it).
+Preposition (IN): Shows a relationship between a noun/pronoun and other words in a
+sentence.
+Conjunction (CC): Joins words, phrases, or clauses together.
+Determiner (DT): Determines or limits a noun.
+Interjection (UH): Expresses strong feelings or emotions.
+
+
+Lab Outcomes:
+Apply knowledge of parts of speech, understand the concept of chunking, and get familiar with the
+basic chunk tagset.
+
+Conclusions:
+In conclusion, the practical application of Part-of-Speech (POS) tagging and chunking is crucial in
+natural language processing (NLP) and information extraction. These techniques play a pivotal role
+by accurately identifying and categorizing the grammatical components of a text, enabling
+machines to comprehend human language more effectively. POS tagging assigns linguistic labels
+to words, facilitating tasks like sentiment analysis. Chunking groups words into meaningful
+chunks, aiding in the extraction of relevant information and identification of syntactic structures.
+Together, POS tagging and chunking enhance NLP systems, contributing to advancements in
+language understanding and machine learning applications.

@@ -1,0 +1,78 @@
+!python -m venv /tmp/env
+!/tmp/env/bin/pip install --upgrade pip
+!/tmp/env/bin/pip install numpy==1.26.4 scipy==1.12.0 h5py==3.10.0 spacy==3.7.2
+!/tmp/env/bin/python -c "import spacy, numpy; print('✅ spaCy:', spacy.__version__, '| NumPy:', numpy.__version__)"
+
+import sys
+sys.path.insert(0, "/tmp/env/lib/python3.11/site-packages")
+
+import spacy
+print("spaCy imported successfully:", spacy.__version__)
+
+! /tmp/env/bin/pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.0/en_core_web_sm-3.7.0-py3-none-any.whl
+
+# Step-1
+import spacy
+
+#Step-2
+nlp = spacy.load("en_core_web_sm")
+
+# Step-3
+text = "Barack Obama was the 44th President of the United States. He was born in Hawaii."
+
+#Step-4
+doc = nlp(text)
+
+#Step-5
+entities = [(ent.text, ent.label_) for ent in doc.ents]
+
+#Step-6
+print("Named Entities:")
+print(entities)
+
+
+
+
+Experiment No. 5
+Name Entity Recognition
+Aim:
+The aim of the Name Entity Recognition practical is to develop and implement a model that
+accurately identifies and classifies named entities in text, such as names of people, organizations,
+and locations.
+
+Lab Objectives:
+To create based on the NLP concept.
+
+Theory:
+Named Entity Recognition (NER) is a crucial task in Natural Language Processing (NLP) that
+involves identifying and classifying named entities in a text into predefined categories. Named
+entities refer to specific pieces of information within a text, such as names of people, locations,
+organizations, dates, and more. The primary goal of NER is to extract and categorize these entities
+accurately.
+
+Here's a detailed explanation of NER:
+1. Tokenization: The first step in NER is tokenization, where the input text is divided into
+individual tokens, usually words or subworlds. For example, the sentence" Barack Obama
+was born in Hawaii." would be tokenized into ["Barack", "Obama", "was", "born", "in",
+"Hawaii", "."].
+2. Part-of-Speech (POS) Tagging: Before performing NER, it's often beneficial to perform
+Part-of-Speech tagging. This assigns a grammatical label (e.g., noun, verb, adjective) to each
+token. For example, "Barack" and "Obama" would be tagged as proper nouns.
+3. NER Labeling: This is where the actual NER task happens. Each token is labeled with its
+corresponding entity category.
+
+Common categories include:
+PERSON: Names of people.
+LOCATION: Names of places or locations.
+ORGANIZATION: Names of companies, institutions, etc.
+DATE: Any sort of date or time reference.
+
+Lab Outcomes:
+Create based in the NLP concept.
+Conclusions:
+In summary, Named Entity Recognition (NER) is a fundamental aspect of natural language
+processing, facilitating the identification and classification of entities like people, organizations,
+locations, and dates in a text. Employing machine learning algorithms, NER is essential in practical
+applications such as information extraction, sentiment analysis, and question-answering systems.
+Its capacity to discern and categorize entities enhances language understanding, automates tasks
+involving unstructured text data, and significantly contributes to developing intelligent and context-aware systems.

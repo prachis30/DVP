@@ -1,0 +1,256 @@
+import pandas as pd
+import re
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
+from nltk.stem import WordNetLemmatizer
+
+# Download necessary NLTK resources
+nltk.download('punkt', quiet=True)
+nltk.download('stopwords', quiet=True)
+nltk.download('wordnet', quiet=True)
+
+# Load the CSV file containing tweets
+# Replace 'your_tweets_file.csv' with your actual file path
+# Assuming the tweet column is named 'tweet' - adjust if different
+print("Loading tweets from CSV file...")
+df = pd.read_csv('Twitter Sentiments.csv')
+
+# Check if 'tweet' column exists, if not, use the first column
+if 'tweet' not in df.columns:
+    # Rename the first column to 'tweet'
+    df = df.rename(columns={df.columns[0]: 'tweet'})
+    print(f"Using column '{df.columns[0]}' as tweet content")
+else:
+    print("Using 'tweet' column from the CSV file")
+
+# Display basic info about the loaded data
+print(f"\nLoaded {len(df)} tweets")
+print("\nFirst few tweets:")
+print(df['tweet'].head())
+
+def create_detailed_preprocessing_table(df, num_samples=5):
+    # Initialize tools
+    stop_words = set(stopwords.words('english'))
+    ps = PorterStemmer()
+    lemmatizer = WordNetLemmatizer()
+    
+    # Sample the dataframe
+    if len(df) > num_samples:
+        sample_df = df.sample(num_samples, random_state=42)
+    else:
+        sample_df = df
+    
+    results = []
+    
+    for original in sample_df['tweet']:
+        # Handle NaN values
+        if pd.isna(original):
+            original = ""
+        else:
+            original = str(original)  # Convert to string in case it's not
+            
+        # Clean text (remove URLs, mentions, hashtags)
+        clean_text = re.sub(r'http\S+|www\S+|https\S+', '', original, flags=re.MULTILINE)
+        clean_text = re.sub(r'@\w+', '', clean_text)
+        clean_text = re.sub(r'#\w+', '', clean_text)
+        clean_text = clean_text.strip()
+        
+        # Remove punctuation
+        punct_text = re.sub(r'[^\w\s]', '', clean_text)
+        
+        # Tokenize
+        tokens = word_tokenize(punct_text.lower())
+        tokenized_text = str(tokens)
+        
+        # Remove stopwords
+        stopwords_removed = [word for word in tokens if word not in stop_words]
+        stopwords_text = ' '.join(stopwords_removed)
+        
+        # Stemming
+        stemmed = [ps.stem(word) for word in stopwords_removed]
+        stemmed_text = ' '.join(stemmed)
+        
+        # Lemmatization
+        lemmatized = [lemmatizer.lemmatize(word) for word in stopwords_removed]
+        lemmatize_text = ' '.join(lemmatized)  # Changed to join for better readability
+        
+        results.append({
+            'tweet': original,
+            'clean_text': clean_text,
+            'punct_text': punct_text,
+            'stopwords_text': stopwords_text,
+            'tokenized_text': tokenized_text,
+            'stemmed_text': stemmed_text,
+            'lemmatize_text': lemmatize_text
+        })
+    
+    return pd.DataFrame(results)
+
+# Create the detailed table
+print("\nCreating detailed preprocessing table...")
+detailed_df = create_detailed_preprocessing_table(df, num_samples=5)
+
+# Display the table with better formatting
+print("\n" + "="*100)
+print("DETAILED PREPROCESSING TABLE")
+print("="*100)
+
+# Set pandas display options for better visibility
+pd.set_option('display.max_colwidth', 50)
+pd.set_option('display.width', None)
+pd.set_option('display.max_columns', None)
+
+# Display as a styled dataframe
+print("\n")
+display(detailed_df)
+
+# Also show with full column width
+print("\n" + "="*100)
+print("FULL TABLE VIEW")
+print("="*100)
+pd.set_option('display.max_colwidth', None)
+display(detailed_df.head())
+
+# Save to CSV for better viewing
+detailed_df.to_csv('Detailed_Preprocessing_Steps.csv', index=False)
+print("\n✓ Detailed table saved to 'Detailed_Preprocessing_Steps.csv'")
+
+# Display each row separately for better readability
+print("\n" + "="*100)
+print("DETAILED VIEW OF EACH PREPROCESSING STAGE")
+print("="*100)
+
+for idx, row in detailed_df.iterrows():
+    print(f"\n{'='*100}")
+    print(f"SAMPLE {idx + 1}")
+    print(f"{'='*100}")
+    print(f"\n1. Original Tweet:\n   {row['tweet']}")
+    print(f"\n2. Clean Text (URLs, @mentions, # removed):\n   {row['clean_text']}")
+    print(f"\n3. Punctuation Removed:\n   {row['punct_text']}")
+    print(f"\n4. Stop Words Removed:\n   {row['stopwords_text']}")
+    print(f"\n5. Tokenized:\n   {row['tokenized_text']}")
+    print(f"\n6. Stemmed:\n   {row['stemmed_text']}")
+    print(f"\n7. Lemmatized:\n   {row['lemmatize_text']}")
+    print()
+
+# If you want to preprocess ALL tweets (not just samples)
+print("\n" + "="*100)
+print("PREPROCESSING ALL TWEETS")
+print("="*100)
+
+# Function to preprocess a single tweet
+def preprocess_tweet(tweet):
+    # Handle NaN values
+    if pd.isna(tweet):
+        return ""
+    
+    tweet = str(tweet)  # Convert to string in case it's not
+    
+    # Initialize tools
+    stop_words = set(stopwords.words('english'))
+    ps = PorterStemmer()
+    lemmatizer = WordNetLemmatizer()
+    
+    # Clean text (remove URLs, mentions, hashtags)
+    clean_text = re.sub(r'http\S+|www\S+|https\S+', '', tweet, flags=re.MULTILINE)
+    clean_text = re.sub(r'@\w+', '', clean_text)
+    clean_text = re.sub(r'#\w+', '', clean_text)
+    clean_text = clean_text.strip()
+    
+    # Remove punctuation
+    punct_text = re.sub(r'[^\w\s]', '', clean_text)
+    
+    # Tokenize
+    tokens = word_tokenize(punct_text.lower())
+    
+    # Remove stopwords
+    stopwords_removed = [word for word in tokens if word not in stop_words]
+    
+    # Lemmatization (usually preferred over stemming for final results)
+    lemmatized = [lemmatizer.lemmatize(word) for word in stopwords_removed]
+    processed_text = ' '.join(lemmatized)
+    
+    return processed_text
+
+# Apply preprocessing to all tweets
+print("Preprocessing all tweets in the dataset...")
+df['processed_tweet'] = df['tweet'].apply(preprocess_tweet)
+
+# Save the full preprocessed dataset
+df.to_csv('All_Preprocessed_Tweets.csv', index=False)
+print("\n✓ Full preprocessed dataset saved to 'All_Preprocessed_Tweets.csv'")
+
+# Display a few examples of the preprocessed tweets
+print("\nSample of preprocessed tweets:")
+pd.set_option('display.max_colwidth', 100)
+display(df[['tweet', 'processed_tweet']].head())
+
+
+
+
+
+Preprocessing of Text (Tokenization, Filtration, Script validation, Stop Word Removal, Stemming)
+
+Aim:
+The aim of this practical is to perform text preprocessing, including:
+1. Tokenization
+2. Filtration
+3. Script Validation
+4. Stop Word Removal
+5. Stemming.
+
+Lab Objectives:
+To implement and analyze the basics of preprocessing text.
+
+Theory:
+In Natural Language Processing (NLP), the preprocessing of text is a crucial step to clean and
+prepare raw text data for further analysis.
+
+Here's an explanation of each:
+1. Tokenization:
+Tokenization is the process of breaking a text into individual words or tokens. These tokens are
+the basic units of meaning in a text.
+For example, the sentence "The quick brown fox" would be tokenized into ["The", "quick",
+"brown", "fox"].
+Tokenization helps in converting unstructured text into a structured format that can be used for
+various NLP tasks like sentiment analysis, language modeling, etc.
+
+Natural Laguage Processing
+'Natural', 'Language', Processing
+
+Fig 1.2-Example of Tokenization
+
+2. Filtration:
+Filtration involves removing unwanted or irrelevant characters or symbols from the text. This
+may include special characters, punctuation marks, or any non-alphabetic characters. Filtration
+helps in simplifying the text and reducing noise, making it easier for subsequent processing
+steps.
+3. Script Validation:
+Script validation involves ensuring that the text is in the expected script or writing system. For
+instance, if you're working with English text, you'd want to check that the text is indeed in the
+Roman script. This step helps avoid potential issues that may arise from mixing different scripts
+in a text corpus.
+4. Stop Word Removal:
+Stop words are common words (e.g., "the", "is", and "in") that don't carry significant meaning
+on their own. Removing them can help reduce the dimensionality of the data and focus on more
+important terms. Stop word removal can improve the efficiency of NLP algorithms, as it reduces
+the computational load and noise in the data.
+Stemming:
+Stemming is the process of reducing a word to its base or root form. This is achieved by
+removing suffixes or prefixes. For example, "running" and "ran" would both be stemmed to
+"run". Stemming helps in reducing the variations of words to a common base form. This can be
+particularly useful for tasks like document retrieval or text classification.
+
+
+Lab Outcome:
+Implement and analyze the basics of preprocessing text.
+Conclusions:
+In conclusion, text preprocessing plays a pivotal role in enhancing the efficiency and accuracy of
+natural language processing tasks. Tokenization facilitates the decomposition of text into
+meaningful units, filtration ensures the removal of irrelevant characters and noise, script validation
+maintains consistency, stop-word removal eliminates redundant terms, and stemming reduces words
+to their root forms. This comprehensive preprocessing pipeline not only optimizes computational
+resources but also contributes to the overall effectiveness of text analysis and machine learning
+applications, enabling more robust and insightful outcomes from textual data.
